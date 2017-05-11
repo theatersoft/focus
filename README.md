@@ -1,2 +1,2 @@
-# components
-Theatersoft Components
+# Focus
+Theatersoft focus navigation component
