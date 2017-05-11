@@ -1,0 +1,46 @@
+{
+  "name": "@theatersoft/components",
+  "version": "1.1.2",
+  "description": "Components for Theatersoft client",
+  "author": "Rob Huehn <rob@theatersoft.com>",
+  "license": "AGPL-3.0",
+  "keywords": [],
+  "repository": "theatersoft/components",
+  "private": true,
+  "scripts": {
+    "build": "node build.js && ls -l dist",
+    "build:dist": "DIST=true npm run build",
+    "clean": "node build.js clean",
+    "watch": "node build.js watch",
+    "link": "npm link @theatersoft/bus",
+    "publish": "node build.js publish"
+  },
+  "distScripts": {
+    "link": "npm link"
+  },
+  "devDependencies": {
+    "@theatersoft/bus": "~1",
+    "babel-core": "^6.18.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
+    "babel-plugin-transform-react-jsx": "^6.8.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.2.11",
+    "babel-preset-babili": "0.0.8",
+    "chokidar": "^1.6.1",
+    "hammerjs": "~1.0.11",
+    "livereload": "^0.6.0",
+    "nib": "~1.0.3",
+    "postcss-modules": "^0.6.4",
+    "preact": "^8.1.0",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^5.0.5",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-postcss": "^0.4.0",
+    "rollup-plugin-sourcemaps": "^0.4.1",
+    "rollup-watch": "^3.2.2",
+    "shelljs": "^0.7.0",
+    "stylus": "^0.54.5"
+  }
+}
