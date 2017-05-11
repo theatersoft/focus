@@ -1,11 +1,11 @@
 {
-  "name": "@theatersoft/components",
-  "version": "1.1.2",
-  "description": "Components for Theatersoft client",
+  "name": "@theatersoft/focus",
+  "version": "1.0.0",
+  "description": "Focus navigation component",
   "author": "Rob Huehn <rob@theatersoft.com>",
   "license": "AGPL-3.0",
   "keywords": [],
-  "repository": "theatersoft/components",
+  "repository": "theatersoft/focus",
   "private": true,
   "scripts": {
     "build": "node build.js && ls -l dist",
@@ -31,16 +31,12 @@
     "hammerjs": "~1.0.11",
     "livereload": "^0.6.0",
     "nib": "~1.0.3",
-    "postcss-modules": "^0.6.4",
-    "preact": "^8.1.0",
     "rollup": "^0.41.6",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^5.0.5",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-postcss": "^0.4.0",
     "rollup-plugin-sourcemaps": "^0.4.1",
     "rollup-watch": "^3.2.2",
-    "shelljs": "^0.7.0",
-    "stylus": "^0.54.5"
+    "shelljs": "^0.7.0"
   }
 }
