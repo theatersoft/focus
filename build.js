@@ -41,23 +41,13 @@ const
             require("babel-plugin-transform-undefined-to-void")
         ] : [])
     }),
-    sourcemaps = require('rollup-plugin-sourcemaps'),
-    postcss = require('rollup-plugin-postcss'),
-    stylus = require('stylus'),
-    postcssModules = require('postcss-modules'),
-    cssExportMap = {}
+    sourcemaps = require('rollup-plugin-sourcemaps')
 
 const targets = {
     clean () {
         console.log('target clean')
         exec('mkdir -p dist')
         exec('rm -rf dist/*')
-    },
-
-    res () {
-        console.log('target res')
-        exec('mkdir -p dist/res')
-        exec('cp res/*.ttf dist/res')
     },
 
     async bundle () {
@@ -69,29 +59,6 @@ const targets = {
                 '@theatersoft/bus'
             ],
             plugins: [
-                postcss({
-                    preprocessor: (content, id) => new Promise((resolve, reject) => {
-                        const renderer = stylus(content, {
-                            filename: id,
-                            sourcemap: {inline: true},
-                            compress: false,
-                            paths: ['styl']
-                        })
-                        renderer.render((err, code) =>
-                            err ? reject(err) : resolve({code, map: renderer.sourcemap})
-                        )
-                    }),
-                    extensions: ['.styl'],
-                    sourceMap: true, // true, "inline" or false
-                    extract: `dist/${name}.css`,
-                    plugins: [
-                        postcssModules({
-                            getJSON(id, exportTokens) {cssExportMap[id] = exportTokens},
-                            generateScopedName: '_[name]_[local]', // _[hash:2]
-                        })
-                    ],
-                    getExport: id => cssExportMap[id]
-                }),
                 nodeResolve({
                     jsnext: true,
                     module: true,
@@ -130,7 +97,6 @@ const targets = {
         })
         fs.writeFileSync('dist/package.json', JSON.stringify(p, null, '  '), 'utf-8')
         exec('cp LICENSE COPYRIGHT README.md .npmignore dist')
-        exec('cp -r index.styl styl dist')
         exec('touch dist/main.js')
     },
 
@@ -151,7 +117,6 @@ const targets = {
 
     async all () {
         console.log('target all')
-        targets.res()
         await targets.bundle()
         targets.package()
     }

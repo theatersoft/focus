@@ -49,7 +49,7 @@ const focus = new (mixinEventEmitter(class {
 
 export default focus
 
-import {h, Component} from 'preact'
+import {Component} from 'preact'
 
 export function mixinFocusable (Base) {
     return class extends Base {
