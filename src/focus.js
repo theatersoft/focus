@@ -62,11 +62,11 @@ export function mixinFocusable (Base) {
         }
 
         onGesture (e) {
-            console.log('mixinFocusable.onGesture')
+            console.log('mixinFocusable.onGesture', e)
         }
 
         onKeydown (e) {
-            console.log('mixinFocusable.onKeydown')
+            console.log('mixinFocusable.onKeydown', e)
         }
     }
 }
