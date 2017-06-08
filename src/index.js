@@ -1,1 +1,1 @@
-export {default as focus, mixinFocusable, Focuser} from './focus'
+export {default as focus, mixinFocusable, Focuser, KeyCode} from './focus'
