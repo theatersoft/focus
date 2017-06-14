@@ -33,7 +33,7 @@ const focus = new (mixinEventEmitter(class {
     }
 
     pop () {
-        if (stack.length) {
+        if (stack.length > 1) {
             stack.pop()
             const top = stack[stack.length - 1]
             sink = top.sink
