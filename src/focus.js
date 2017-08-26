@@ -97,3 +97,5 @@ export class Focuser extends Component {
         return this.map[focused] // Focuser child should autofocus when mounted
     }
 }
+
+window.addEventListener('contextmenu', e => e.preventDefault())
