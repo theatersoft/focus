@@ -20,7 +20,7 @@ const focus = new (mixinEventEmitter(class {
         Hammer(window.document.body, {
             drag_lock_to_axis: true
         })
-            .on("tap dragleft dragright dragend swipeleft swiperight", filterTouchMouse()(e => {
+            .on("tap hold dragleft dragright dragend swipeleft swiperight", filterTouchMouse()(e => {
                 if (sink.onGesture) sink.onGesture(e)
                 else if (sink.emit) sink.emit('gesture', e)
             }))
