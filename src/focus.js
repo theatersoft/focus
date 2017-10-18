@@ -22,7 +22,7 @@ const focus = new (mixinEventEmitter(class {
         })
             .on("tap hold dragleft dragright dragend swipeleft swiperight", filterTouchMouse()(e => {
                 if (sink.onGesture) sink.onGesture(e)
-                else if (sink.emit) sink.emit('gesture', e)
+                //else if (sink.emit) sink.emit('gesture', e)
             }))
 
         document.onkeydown = e => {
@@ -34,7 +34,7 @@ const focus = new (mixinEventEmitter(class {
                 }
             }
             if (sink.onKeydown) sink.onKeydown(e)
-            else if (sink.emit) sink.emit('keydown', e)
+            //else if (sink.emit) sink.emit('keydown', e)
         }
     }
 
