@@ -8,7 +8,7 @@ const focus = new (mixinEventEmitter(class {
     constructor () {
         this.hammer = new Hammer(document.getElementById('ui'))
             .on("tap press panright panleft panend swipeleft swiperight", e => {
-                log(e.type, e)
+                //log(e.type, e)
                 if (sink.onGesture) sink.onGesture(e)
             })
         document.onkeydown = e => {
