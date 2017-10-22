@@ -1,5 +1,5 @@
-import Hammer from 'hammerjs'
-import {mixinEventEmitter} from '@theatersoft/bus'
+import Hammer from 'hammerjs/src/main'
+import {mixinEventEmitter, log} from '@theatersoft/bus'
 
 const stack = [] // stack of sinks
 let sink = {}
@@ -17,24 +17,14 @@ const filterTouchMouse = _touch => f => e => {
 
 const focus = new (mixinEventEmitter(class {
     constructor () {
-        Hammer(window.document.body, {
-            drag_lock_to_axis: true
-        })
-            .on("tap hold dragleft dragright dragend swipeleft swiperight", /*filterTouchMouse()*/(e => {
+        this.hammer = new Hammer(document.getElementById('ui'))
+            .on("tap press panright panleft panend swipeleft swiperight", /*filterTouchMouse()*/(e => {
+                log(e.type, e)
                 if (sink.onGesture) sink.onGesture(e)
-                //else if (sink.emit) sink.emit('gesture', e)
             }))
 
         document.onkeydown = e => {
-            if (e.keyCode === 8) {
-                console.log('back')
-                var d = e.srcElement || e.target;
-                if (!(d.tagName.toUpperCase() === 'INPUT' && d.type.toUpperCase() === 'TEXT')) {
-                    e.preventDefault(); // Prevent the backspace key from navigating back
-                }
-            }
             if (sink.onKeydown) sink.onKeydown(e)
-            //else if (sink.emit) sink.emit('keydown', e)
         }
     }
 
