@@ -7,6 +7,7 @@ const
     name = pkg.name.startsWith('@theatersoft') && pkg.name.slice(13),
     DIST = process.env.DIST === 'true',
     fs = require('fs'),
+    path = require('path'),
     writeJson = (file, json) => fs.writeFileSync(file, JSON.stringify(json, null, '  '), 'utf-8'),
     copyright = `/*\n${fs.readFileSync('COPYRIGHT', 'utf8')}\n */`,
     {rollup} = require('rollup'),
@@ -100,7 +101,12 @@ const targets = {
 
     async watch () {
         await targets.all()
-        require('chokidar').watch(['src', 'styl'])
+        const dir = n => path.dirname(require.resolve(n))
+        require('chokidar').watch([
+                'src', 'styl',
+                `${dir('@theatersoft/bus')}/*.es.js`,
+                `${dir('hammerjs')}/src/**/*.js`
+            ])
             .on('change', path => {
                 console.log(new Date().toLocaleTimeString(), path)
                 targets.bundle()
