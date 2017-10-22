@@ -4,25 +4,13 @@ import {mixinEventEmitter, log} from '@theatersoft/bus'
 const stack = [] // stack of sinks
 let sink = {}
 
-const filterTouchMouse = _touch => f => e => {
-    if (e.type === 'tap') {
-        if (_touch && e.gesture.pointerType === 'mouse') {
-            _touch = false
-            return
-        }
-        _touch = e.gesture.pointerType === 'touch'
-    }
-    f(e)
-}
-
 const focus = new (mixinEventEmitter(class {
     constructor () {
         this.hammer = new Hammer(document.getElementById('ui'))
-            .on("tap press panright panleft panend swipeleft swiperight", /*filterTouchMouse()*/(e => {
+            .on("tap press panright panleft panend swipeleft swiperight", e => {
                 log(e.type, e)
                 if (sink.onGesture) sink.onGesture(e)
-            }))
-
+            })
         document.onkeydown = e => {
             if (sink.onKeydown) sink.onKeydown(e)
         }
