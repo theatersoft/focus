@@ -6,7 +6,9 @@ let sink = {}
 
 const focus = new (mixinEventEmitter(class {
     constructor () {
-        this.hammer = new Hammer(document.getElementById('ui'))
+        this.hammer = new Hammer(document.getElementById('ui'), {
+            touchAction: 'none'
+        })
             .on("tap press panright panleft panend swipeleft swiperight", e => {
                 //log(e.type, e)
                 if (sink.onGesture) sink.onGesture(e)
@@ -31,7 +33,7 @@ const focus = new (mixinEventEmitter(class {
     }
 
     register (_sink, name) {
-        console.log('focus.register', name)
+        log('focus.register', name)
         sink = stack[stack.length - 1].sink = _sink
     }
 }))
@@ -51,11 +53,11 @@ export function mixinFocusable (Base) {
         }
 
         onGesture (e) {
-            console.log('mixinFocusable.onGesture', e)
+            log('mixinFocusable.onGesture', e)
         }
 
         onKeydown (e) {
-            console.log('mixinFocusable.onKeydown', e)
+            log('mixinFocusable.onKeydown', e)
         }
     }
 }
@@ -71,7 +73,7 @@ export class Focuser extends Component {
     }
 
     render ({}, {focused}) {
-        console.log('Focuser.render', focused)
+        log('Focuser.render', focused)
         return this.map[focused] // Focuser child should autofocus when mounted
     }
 }
