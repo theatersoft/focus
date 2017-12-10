@@ -1,5 +1,5 @@
 import Hammer from 'hammerjs/src/main'
-import {mixinEventEmitter, log} from '@theatersoft/bus'
+import {mixinEventEmitter, log, debug} from '@theatersoft/bus'
 
 const stack = [] // stack of sinks
 let sink = {}
@@ -10,7 +10,7 @@ const focus = new (mixinEventEmitter(class {
             touchAction: 'none'
         })
             .on("tap press panright panleft panend swipeleft swiperight", e => {
-                //log(e.type, e)
+                //debug(e.type, e)
                 if (sink.onGesture) sink.onGesture(e)
             })
         document.onkeydown = e => {
@@ -33,7 +33,7 @@ const focus = new (mixinEventEmitter(class {
     }
 
     register (_sink, name) {
-        log('focus.register', name)
+        debug('focus.register', name)
         sink = stack[stack.length - 1].sink = _sink
     }
 }))
@@ -53,11 +53,11 @@ export function mixinFocusable (Base) {
         }
 
         onGesture (e) {
-            log('mixinFocusable.onGesture', e)
+            debug('mixinFocusable.onGesture', e)
         }
 
         onKeydown (e) {
-            log('mixinFocusable.onKeydown', e)
+            debug('mixinFocusable.onKeydown', e)
         }
     }
 }
@@ -73,7 +73,7 @@ export class Focuser extends Component {
     }
 
     render ({}, {focused}) {
-        log('Focuser.render', focused)
+        debug('Focuser.render', focused)
         return this.map[focused] // Focuser child should autofocus when mounted
     }
 }
