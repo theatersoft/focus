@@ -6,7 +6,7 @@ let sink = {}
 
 const focus = new (mixinEventEmitter(class {
     constructor () {
-        this.hammer = new Hammer(document.getElementById('ui'), {
+        this.hammer = new Hammer(document.body, {
             touchAction: 'none'
         })
             .on("tap press panright panleft panend swipeleft swiperight", e => {
